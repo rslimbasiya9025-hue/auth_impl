@@ -17,6 +17,8 @@ export const dbConfig: TypeOrmModuleAsyncOptions = {
       database: configService.getOrThrow<string>('DB_NAME'),
       username: configService.getOrThrow<string>('DB_USERNAME'),
       password: configService.getOrThrow<string>('DB_PASSWORD'),
+      autoLoadEntities: true,
+      synchronize: true,
     };
   },
 };

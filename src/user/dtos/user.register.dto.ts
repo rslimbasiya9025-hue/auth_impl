@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
 import {
   IsEmail,
   IsString,
@@ -17,17 +15,18 @@ import { Transform } from 'class-transformer';
 export class RegisterDto {
   @IsEmail()
   @Transform(({ value }: { value: string }) => value.trim())
-  @Matches(/^(?=.*[A-Z])(?=.*\d).+$/, {
-    message: 'Password must contain uppercase and number',
-  })
   email!: string;
 
   @IsString()
   @MinLength(6)
+  @Matches(/^(?=.*[A-Z])(?=.*\d).+$/, {
+    message: 'Password must contain uppercase and number',
+  })
   password!: string;
 
   @IsOptional()
   @IsString()
+  c;
   firstName?: string;
 
   @IsOptional()

@@ -5,38 +5,39 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserRole } from '../types/user.type';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   // 🔐 Auth basics
-  @Column({ unique: true })
+  @Column({ unique: true, length: 100 })
   email!: string;
 
   @Column()
   password!: string;
 
   // 👤 Profile info
-  @Column({ nullable: true })
+  @Column({ nullable: true, length: 100 })
   firstName!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, length: 100 })
   lastName!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, length: 200 })
   username!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, length: 20 })
   phone!: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, length: 500 })
   avatarUrl!: string;
 
   // 🔑 Authorization
-  @Column({ default: 'user' })
-  role!: string; // 'user' | 'admin'
+  @Column({ default: 'ROLE_USER' })
+  role!: UserRole; // 'ROLE_USER' | 'ROLE_ADMIN'
 
   // ✅ Account status
   @Column({ default: false })

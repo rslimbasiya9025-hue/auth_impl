@@ -6,10 +6,12 @@ import { configModule, dbConfig } from 'config/db.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { User } from './user/entity/user.entity';
 
 @Module({
   imports: [
     configModule,
+    TypeOrmModule.forFeature([User]),
     TypeOrmModule.forRootAsync(dbConfig),
     UserModule,
     AuthModule,
